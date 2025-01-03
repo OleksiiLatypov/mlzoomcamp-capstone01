@@ -1,2 +1,2 @@
-# mlzoomcamp-capstone01
-mlzoomcamp capstone project
+# ml-zoomcamp-capstone01
+ML Zoomcamp Capstone Project
