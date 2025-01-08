@@ -220,12 +220,27 @@ print(report)
 #SAVE MODEL 
 try:
     # Try saving the model
-    cnn_model.save('cnn_model_with_augmentation.h5')
+    cnn_model.save('cnn_model.h5')
     print("Model saved successfully!")
 
 except Exception as e:
     # Catch any exception and print the error message
     print(f"An error occurred while saving the model: {e}")
+
+
+# Load your saved model
+model = load_model('cnn_model.h5')
+
+
+# Convert the Keras model to TensorFlow Lite format
+converter = tf.lite.TFLiteConverter.from_keras_model(cnn_model)
+tflite_model = converter.convert()
+
+# Save the converted TensorFlow Lite model
+with open('converted_model.tflite', 'wb') as file:
+    file.write(tflite_model)
+
+print("Model successfully converted to converted_model.tflite")
 
 
 
