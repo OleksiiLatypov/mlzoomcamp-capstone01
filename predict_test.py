@@ -3,7 +3,11 @@ import requests
 
 url = "http://localhost:9696/predict"
 
+#PUT YOUR LINK IMAGE
+#data = {'url': '<YOUR  IMAGE LINK>'}
 
+
+# EXAMPLES LINKS
 # COVID IMAGES
 
 data = {'url': 'https://www.ochsnerjournal.org/content/ochjnl/21/2/126/F7.large.jpg'}
