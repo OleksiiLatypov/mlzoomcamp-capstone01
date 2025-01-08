@@ -8,7 +8,7 @@ COPY ["Pipfile", "Pipfile.lock", "./"]
 
 RUN pipenv install --system --deploy 
 
-COPY ["predict.py", "cnn_model_with_augmentation.h5", "./"] 
+COPY ["predict.py", "converted_model.tflite", "./"] 
 
 EXPOSE 9696
 

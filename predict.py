@@ -9,7 +9,7 @@ import tensorflow as tf
 app = Flask(__name__)
 
 # Load the TensorFlow Lite model
-TFLITE_MODEL_PATH = '/workspaces/mlzoomcamp-capstone01/converted_model.tflite'
+TFLITE_MODEL_PATH = 'converted_model.tflite'
 
 # Initialize the TensorFlow Lite interpreter
 interpreter = tf.lite.Interpreter(model_path=TFLITE_MODEL_PATH)
