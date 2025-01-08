@@ -29,8 +29,8 @@ np.random.seed(SEED)
 tf.random.set_seed(SEED)
 
 
-train_path = '/workspaces/ml-zoomcamp-capstone01/Covid19-dataset/train'
-test_path = '/workspaces/ml-zoomcamp-capstone01/Covid19-dataset/test'
+train_path = '/workspaces/mlzoomcamp-capstone01/Covid19-dataset/train'
+test_path = '/workspaces/mlzoomcamp-capstone01/Covid19-dataset/test'
 
 
 name_classes = os.listdir(train_path)
@@ -117,25 +117,27 @@ plt.tight_layout()
 plt.show()
 
 
-datagen_train=ImageDataGenerator(rescale=1./255.,validation_split=0.2)
+datagen_train=ImageDataGenerator(rescale=1./255., validation_split=0.2)
 datagen_test=ImageDataGenerator(rescale=1./255.)
 
 
-train_it=datagen_train.flow_from_directory(batch_size=32,
+train_data=datagen_train.flow_from_directory(batch_size=32,
                                             directory=train_path,
                                             shuffle=True,
                                             classes=name_classes,
                                             target_size=SIZE,
                                             subset="training",
                                             class_mode='categorical')
-valid_it=datagen_train.flow_from_directory(batch_size=32,
+
+validation_data=datagen_train.flow_from_directory(batch_size=32,
                                             directory=train_path,
                                             shuffle=True,
                                             classes=name_classes,
                                             subset="validation",
                                             target_size=SIZE,
                                             class_mode='categorical')
-test_it=datagen_train.flow_from_directory(batch_size=1,
+
+test_data=datagen_train.flow_from_directory(batch_size=1,
                                             directory=test_path,
                                             shuffle=False,
                                             classes=name_classes,
@@ -191,21 +193,22 @@ cnn_model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['acc
 class myCallback(Callback):
     def on_epoch_end(self, epoch, logs={}):
         # Check if accuracy has reached or exceeded 95%
-        if logs.get('accuracy') >= 0.97:
-            print(f"\nReached More than 97% accuracy")
+        if logs.get('accuracy') >= 0.99:
+            print(f"\nReached More than 99% accuracy")
             self.model.stop_training = True  # Stop training early
 
 # Initialize the custom callback instance
 callback = myCallback()
 
 
-hist=cnn_model.fit(train_it,epochs=30,validation_data=valid_it,callbacks=callback)
-print(cnn_model.evaluate(test_it))
+hist=cnn_model.fit(train_data, epochs=30, validation_data=validation_data, callbacks=callback)
 
-predictions=cnn_model.predict(test_it)
-y_pred=[np.argmax(probas) for probas in predictions]
-y_test=test_it.classes
-class_names=test_it.class_indices.keys()
+print(cnn_model.evaluate(test_data))
+
+predictions = cnn_model.predict(test_data)
+y_pred = [np.argmax(probas) for probas in predictions]
+y_test = test_data.classes
+class_names = test_data.class_indices.keys()
 
 # Generate classification report
 report = classification_report(y_test, y_pred, target_names=name_classes)
@@ -224,7 +227,7 @@ except Exception as e:
     # Catch any exception and print the error message
     print(f"An error occurred while saving the model: {e}")
 
-'''
+
 
 
 ### IMAGE AUGMENTATION ###
@@ -242,7 +245,7 @@ datagen_train_aug = ImageDataGenerator(
 )
 
 # Training data generator with augmentation
-train_it_aug = datagen_train_aug.flow_from_directory(
+train_data_aug = datagen_train_aug.flow_from_directory(
     batch_size=32,
     directory=train_path,
     shuffle=True,
@@ -252,14 +255,14 @@ train_it_aug = datagen_train_aug.flow_from_directory(
     class_mode='categorical'
 )
 
-hist_aug = cnn_model.fit(train_it_aug, epochs=20, validation_data=valid_it, callbacks=[callback])
+hist_aug = cnn_model.fit(train_data_aug, epochs=20, validation_data=validation_data, callbacks=[callback])
 
-print(cnn_model.evaluate(test_it))
+print(cnn_model.evaluate(test_data))
 
-predictions=cnn_model.predict(test_it)
+predictions=cnn_model.predict(test_data)
 y_pred=[np.argmax(probas) for probas in predictions]
-y_test=test_it.classes
-class_names=test_it.class_indices.keys()
+y_test=test_data.classes
+class_names=test_data.class_indices.keys()
 
 # Generate classification report
 report = classification_report(y_test, y_pred, target_names=name_classes)
@@ -310,7 +313,7 @@ datagen_train_vgg = ImageDataGenerator(
 
 
 # Flow training and validation data
-train_it = datagen_train_vgg.flow_from_directory(
+train_data_aug = datagen_train_vgg.flow_from_directory(
     batch_size=32,
     directory=train_path,
     shuffle=True,
@@ -321,18 +324,18 @@ train_it = datagen_train_vgg.flow_from_directory(
 
 
 history_vgg = model_vgg.fit(
-    train_it,
+    train_data_aug,
     epochs=10,
-    validation_data=valid_it
+    validation_data=validation_data
 )
 
-print(model_vgg.evaluate(test_it))
+print(model_vgg.evaluate(test_data))
 
 
-predictions=model_vgg.predict(test_it)
+predictions=model_vgg.predict(test_data)
 y_pred=[np.argmax(probas) for probas in predictions]
-y_test=test_it.classes
-class_names=test_it.class_indices.keys()
+y_test=test_data.classes
+class_names=test_data.class_indices.keys()
 
 # Generate classification report
 report = classification_report(y_test, y_pred, target_names=name_classes)
@@ -341,7 +344,6 @@ report = classification_report(y_test, y_pred, target_names=name_classes)
 print(report)
 
 
-'''
 
 
 model = load_model('cnn_model_with_augmentation.h5')
@@ -349,7 +351,7 @@ model = load_model('cnn_model_with_augmentation.h5')
 
 
 # Example image path (replace with the actual image file path)
-img_path = '/workspaces/ml-zoomcamp-capstone01/Covid19-dataset/test/Viral Pneumonia/0102.jpeg'
+img_path = '/workspaces/mlzoomcamp-capstone01/Covid19-dataset/test/Viral Pneumonia/0102.jpeg'
 
 # Load and preprocess the image
 image_for_prediction = load_image_path(img_path)

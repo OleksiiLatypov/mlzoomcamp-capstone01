@@ -4,15 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-keras = "*"
 tensorflow = "*"
+keras = "*"
+pandas = "*"
+matplotlib = "*"
+numpy = "*"
 seaborn = "*"
 scikit-learn = "*"
-matplotlib = "*"
-pandas = "*"
-numpy = "*"
-flask = "*"
-gunicorn = "*"
 
 [dev-packages]
 
