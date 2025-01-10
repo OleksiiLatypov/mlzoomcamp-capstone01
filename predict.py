@@ -86,7 +86,7 @@ def predict():
         predicted_class_index = np.argmax(prediction, axis=1)
         predicted_class_label = class_labels[predicted_class_index[0]]
 
-        return jsonify({'prediction': predicted_class_label, 'probability': prediction.tolist()})
+        return jsonify({'prediction': predicted_class_label, 'probability': max(prediction.tolist()[0])})
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
