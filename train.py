@@ -361,7 +361,7 @@ print(report)
 
 
 
-model = load_model('cnn_model_with_augmentation.h5')
+model = load_model('cnn_model.h5')
 
 
 
