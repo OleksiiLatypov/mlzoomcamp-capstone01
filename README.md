@@ -137,6 +137,6 @@ For uncommented link:
 
 https://www.princeton.edu/sites/default/files/styles/scale_1440/public/images/2020/05/x-ray-image-2b_full.jpg?itok=2FO93vqG
 
-You should next prediction:
+It should be next prediction:
 
 {'prediction': 'Covid', 'probability': 0.9971820116043091}
