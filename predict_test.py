@@ -10,7 +10,8 @@ url = "http://localhost:9696/predict"
 # EXAMPLES LINKS
 # COVID IMAGES
 
-data = {'url': 'https://www.ochsnerjournal.org/content/ochjnl/21/2/126/F7.large.jpg'}
+data = {'url': 'https://www.princeton.edu/sites/default/files/styles/scale_1440/public/images/2020/05/x-ray-image-2b_full.jpg?itok=2FO93vqG'}
+#data = {'url': 'https://www.ochsnerjournal.org/content/ochjnl/21/2/126/F7.large.jpg'}
 #data = {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP4ycheoSrg-UHd-6sTSpv3w1FFGWkhYYMQ0bnwsS5XS-TN8LTm6pHd-0ukiuJ2DF1qmg&usqp=CAU'}
 
 #NORMAL
