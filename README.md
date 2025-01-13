@@ -133,7 +133,7 @@ docker run -it -p 9696:9696 covid-prediction:latest
 python predict_test.py
 ```
 
-For uncommented link:
+For uncommented link in ```predict_test.py``` file:
 
 https://www.princeton.edu/sites/default/files/styles/scale_1440/public/images/2020/05/x-ray-image-2b_full.jpg?itok=2FO93vqG
 
