@@ -48,7 +48,20 @@ Covid19-dataset/
         ├── img2.jpg
         └── ... (more images)
 ```
+### CNN Model Architecture and Evaluation
+In this project, was used a Convolutional Neural Network (CNN) architecture to classify X-ray images into three categories: COVID-19, Viral Pneumonia, and Normal.
 
+To select the best model, it was used the following evaluation metrics:
+
+Accuracy Score: To measure the overall performance of the model.
+
+Precision: To evaluate how many of the positive predictions were correct.
+
+Recall: To evaluate how many of the actual positive cases were correctly identified.
+
+Confusion Matrix: To visualize the performance of the classification model and the distribution of errors.
+
+Based on the evaluation metrics, it was selected the best-performing model to make predictions on the test data.
 
 ### How to Set Up the Project
 
