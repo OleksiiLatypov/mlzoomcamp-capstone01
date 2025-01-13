@@ -63,6 +63,11 @@ Confusion Matrix: To visualize the performance of the classification model and t
 
 Based on the evaluation metrics, it was selected the best-performing model to make predictions on the test data.
 
+Image Augmentation techniques were used during training. These techniques included random rotations, shifts, flips, and zooms, which artificially increased the diversity of the training dataset.
+
+Additionally, VGG16, a popular deep learning model pre-trained on the ImageNet dataset, was used as a feature extractor. The model's convolutional layers were used to extract features from the X-ray images before feeding them into the custom CNN layers for final classification.
+
+
 ### How to Set Up the Project
 
 Follow these steps to set up the project from GitHub on your local machine:
